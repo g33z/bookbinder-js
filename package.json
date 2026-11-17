@@ -20,18 +20,24 @@
   "license": "MPL",
   "devDependencies": {
     "eslint": "^8.56.0",
-    "jsdom": "^26.0.0",
-    "pdf-visual-diff": "^0.14.0",
+    "jsdom": "^31.0.1",
+    "pdf-visual-diff": "^0.16.0",
     "prettier": "^3.2.5",
-    "vite": "^5.0.10",
+    "vite": "^8.3.8",
     "vite-plugin-package-version": "^1.1.0",
-    "vitest": "^1.0.4"
+    "vitest": "^5.1.0"
   },
   "dependencies": {
     "@cantoo/pdf-lib": "^1.21.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.7.1",
-    "vite-plugin-html-inject": "^1.1.2",
-    "zod": "^3.22.4"
+    "vite-plugin-html-inject": "^1.2.0",
+    "zod": "^4.6.7"
+  },
+  "overrides": {
+    "zod": "$zod",
+    "pdf-visual-diff": {
+      "glob": "^14.0.6"
+    }
   }
 }

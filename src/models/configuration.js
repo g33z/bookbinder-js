@@ -27,7 +27,10 @@ const coercedBoolean = z
   .transform((val) => val === 'true' || val === 'on' || val === true);
 
 /**
- * @type {<Output=unknown, Def extends (import("zod").ZodTypeDef)=(import("zod").ZodTypeDef), Input=Output>(schema: ZodType<Output, Def, Input>) => ZodType<Output | undefined, Def, Input | undefined>}
+ * Makes a schema tolerant of missing or invalid input: such values become
+ * undefined, so a following `.default()` supplies the fallback.
+ * @template {import("zod").ZodType} T
+ * @param {T} schema The schema to wrap
  */
 const urlSafe = (schema) => schema.optional().catch(() => undefined);
 
@@ -98,7 +101,7 @@ export const schema = z.object({
   bottomEdgePaddingPt: urlSafe(z.coerce.number()).default(0),
   sigFormat,
   sigLength: urlSafe(z.coerce.number()).default(4), // Specific to standard
-  customSigLength: urlSafe(commaSeparatedNumberList).default(null), // Specific to custom.
+  customSigLength: urlSafe(commaSeparatedNumberList), // Specific to custom.
   foreEdgePaddingPt: urlSafe(z.coerce.number()).default(0), // specific to wacky small
   wackySpacing, // specific to wacky small
   flyleafs: urlSafe(z.coerce.number()).default(1),
